@@ -42,16 +42,20 @@ interface StoredUser {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     // Check for existing session
-    const storedUser = localStorage.getItem(CURRENT_USER_KEY)
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser)
-        setUser(parsedUser)
-      } catch {
-        localStorage.removeItem(CURRENT_USER_KEY)
+    if (typeof window !== 'undefined') {
+      const storedUser = localStorage.getItem(CURRENT_USER_KEY)
+      if (storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser)
+          setUser(parsedUser)
+        } catch {
+          localStorage.removeItem(CURRENT_USER_KEY)
+        }
       }
     }
     setIsLoading(false)
