@@ -1,0 +1,215 @@
+"use client"
+
+import { Header } from "@/components/header"
+import { SectionTitle } from "@/components/section-title"
+
+const ventajas = [
+  "Absorción rápida",
+  "Permite mayor volumen",
+  "Adecuada para medicamentos irritantes",
+  "Útil cuando la vía oral no es posible",
+]
+
+const desventajas = [
+  "Más dolorosa",
+  "Requiere personal capacitado",
+  "Riesgo de lesiones si se aplica mal",
+  "No ideal para autoadministración frecuente",
+]
+
+const tiposDeAgujas = [
+  "Jeringa de 3 a 5 ml",
+  "Aguja calibre 21-23 G (1 a 1½ pulgadas)",
+]
+
+const lugaresMasUtilizados = [
+  "Deltoides (brazo)",
+  "Vasto lateral (muslo)",
+  "Ventroglúteo (cadera) – recomendado por seguridad",
+  "Dorsoglúteo (glúteo) – uso limitado por riesgo del nervio ciático",
+]
+
+const procedimiento = [
+  {
+    titulo: "Preparación del material",
+    items: [
+      "Medicamento prescrito",
+      "Algodón o gasa estéril",
+      "Antiséptico (alcohol al 70 %)",
+      "Guantes",
+      "Recipiente para material cortopunzante",
+    ],
+  },
+  {
+    titulo: "Higiene y seguridad",
+    items: [
+      "Lavado de manos",
+      "Colocación de guantes",
+      "Verificación de los 5 correctos",
+    ],
+  },
+  {
+    titulo: "Preparación del medicamento",
+    items: [
+      "Cargar la dosis indicada",
+      "Eliminar burbujas de aire",
+    ],
+  },
+  {
+    titulo: "Selección del sitio de inyección",
+    items: [
+      "Elegir zona adecuada según edad, masa muscular y medicamento",
+    ],
+  },
+  {
+    titulo: "Antisepsia",
+    items: [
+      "Limpieza circular del sitio",
+      "Dejar secar",
+    ],
+  },
+  {
+    titulo: "Técnica de inyección",
+    items: [
+      "Colocar la piel tensa",
+      "Introducir la aguja en ángulo de 90°",
+      "Aspirar solo si el protocolo lo indica",
+      "Inyectar lentamente",
+      "Retirar la aguja con firmeza",
+    ],
+  },
+  {
+    titulo: "Retiro de la aguja",
+    items: [
+      "Retirar la aguja rápidamente y en el mismo ángulo de inserción (90°)",
+      "Aplicar presión suave con una gasa o algodón estéril",
+      "No masajear el sitio, salvo indicación específica del medicamento",
+      "Observar si hay sangrado, dolor intenso o reacción inmediata",
+    ],
+  },
+  {
+    titulo: "Eliminación del material",
+    items: [
+      "Desechar la aguja y la jeringa sin recapuchar en el recipiente para material cortopunzante",
+      "Eliminar gasas y algodones contaminados según normas de bioseguridad",
+      "Retirar los guantes y realizar lavado de manos",
+    ],
+  },
+  {
+    titulo: "Registro y observación",
+    items: [
+      "Registrar en la historia clínica:",
+      "Fecha y hora de administración",
+      "Medicamento administrado",
+      "Dosis",
+      "Vía intramuscular",
+      "Sitio de aplicación",
+      "Nombre y firma del profesional",
+    ],
+  },
+]
+
+export default function ViaIntramuscularPage() {
+  return (
+    <div className="min-h-screen bg-background">
+      <Header title="Vía Intramuscular" />
+      
+      <main className="max-w-5xl mx-auto px-6 py-12">
+        {/* Qué es */}
+        <section className="mb-12">
+          <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+            <SectionTitle color="cyan">¿Qué es?</SectionTitle>
+            <p className="mt-5 text-base text-foreground/75 leading-relaxed">
+              La vía intramuscular (IM) es un método de administración de medicamentos en el cual el fármaco se inyecta directamente en el tejido muscular, que posee una abundante irrigación sanguínea, lo que permite una absorción más rápida y eficaz que las vías intradérmica y subcutánea.
+            </p>
+          </div>
+        </section>
+
+        {/* Ventajas y Desventajas */}
+        <section className="mb-12">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+              <h3 className="text-xl font-bold text-cyan-400 mb-4">Ventajas</h3>
+              <ul className="space-y-3">
+                {ventajas.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+              <h3 className="text-xl font-bold text-emerald-400 mb-4">Desventajas</h3>
+              <ul className="space-y-3">
+                {desventajas.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                    <span className="text-emerald-400 mt-0.5">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Tipos de Agujas y Lugares */}
+        <section className="mb-12">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+              <SectionTitle color="cyan">Tipos de Agujas Y material</SectionTitle>
+              <ul className="mt-5 space-y-3">
+                {tiposDeAgujas.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+              <SectionTitle color="cyan">Lugares más Utilizados</SectionTitle>
+              <ul className="mt-5 space-y-3">
+                {lugaresMasUtilizados.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                    <span className="text-cyan-400 mt-0.5">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Procedimiento */}
+        <section className="mb-12">
+          <SectionTitle color="green">Procedimiento de administración por vía intramuscular</SectionTitle>
+          <div className="mt-8 space-y-6">
+            {procedimiento.map((paso, index) => (
+              <div key={index} className="bg-card rounded-2xl p-6 shadow-sm border border-border/50">
+                <h3 className="text-lg font-bold text-emerald-400 mb-4">
+                  {index + 1}. {paso.titulo}
+                </h3>
+                <ul className="space-y-2">
+                  {paso.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                      <span className="text-emerald-400 mt-0.5">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+      
+      {/* Footer */}
+      <footer className="bg-card/50 border-t border-border py-6">
+        <div className="max-w-5xl mx-auto px-6 text-center text-sm text-muted-foreground">
+          Material educativo sobre administración de medicamentos parenterales
+        </div>
+      </footer>
+    </div>
+  )
+}
