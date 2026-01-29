@@ -2,6 +2,40 @@
 
 import { Header } from "@/components/header"
 import { SectionTitle } from "@/components/section-title"
+import Image from "next/image"
+
+const galeriaImagenes = [
+  {
+    src: "/images/intramuscular-1.jpg",
+    alt: "Inyección intramuscular en deltoides",
+    caption: "Inyección en músculo deltoides"
+  },
+  {
+    src: "/images/intramuscular-2.jpg",
+    alt: "Preparación de medicamento IM",
+    caption: "Preparación de medicamento"
+  },
+  {
+    src: "/images/intramuscular-3.jpg",
+    alt: "Localización del sitio ventroglúteo",
+    caption: "Sitio ventroglúteo"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.02%20PM%20%281%29-oIlL40SMXYQJtt9YHf9FzJqbHMI3zq.jpeg",
+    alt: "Preparación de suero",
+    caption: "Preparación del medicamento"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.04%20PM%20%281%29-JFkB8cEpel98NRphupzjDRsYY222Ss.jpeg",
+    alt: "Materiales para inyección IM",
+    caption: "Bandeja de materiales"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.04%20PM-302W7LDfS7fQTcwyio00swSqAOgoSR.jpeg",
+    alt: "Jeringa estéril",
+    caption: "Jeringa estéril empacada"
+  },
+]
 
 const ventajas = [
   "Absorción rápida",
@@ -178,6 +212,34 @@ export default function ViaIntramuscularPage() {
                 ))}
               </ul>
             </div>
+          </div>
+        </section>
+
+        {/* Galería de imágenes */}
+        <section className="mb-12">
+          <SectionTitle color="cyan" className="mb-8">Galería de Procedimientos</SectionTitle>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galeriaImagenes.map((imagen, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src={imagen.src}
+                    alt={imagen.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm font-medium text-center drop-shadow-lg">
+                      {imagen.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
