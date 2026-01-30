@@ -1,8 +1,9 @@
-import { updateSession } from '@/lib/supabase/proxy'
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+  // For now, just pass through all requests
+  // Supabase auth can be re-enabled when needed
+  return NextResponse.next()
 }
 
 export const config = {

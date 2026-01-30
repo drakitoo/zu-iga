@@ -1,6 +1,41 @@
 import { Header } from "@/components/header"
 import { SectionTitle } from "@/components/section-title"
 import { VentajasDesventajas } from "@/components/ventajas-desventajas"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Image from "next/image"
+
+const galeriaImagenes = [
+  {
+    src: "/images/intradermica-1.jpg",
+    alt: "Técnica de inyección intradérmica",
+    caption: "Inyección intradérmica en antebrazo"
+  },
+  {
+    src: "/images/intradermica-2.jpg",
+    alt: "Reacción de prueba cutánea",
+    caption: "Formación de pápula (habón)"
+  },
+  {
+    src: "/images/intradermica-3.jpg",
+    alt: "Material para inyección intradérmica",
+    caption: "Jeringa tuberculina y materiales"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.03%20PM%20%283%29-gGrwRWWrC3H9Am5PVwGBZQc7Le7hQ2.jpeg",
+    alt: "Técnica de inserción de aguja",
+    caption: "Técnica de inserción"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.04%20PM-302W7LDfS7fQTcwyio00swSqAOgoSR.jpeg",
+    alt: "Jeringa estéril empacada",
+    caption: "Jeringa estéril"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.04%20PM%20%281%29-JFkB8cEpel98NRphupzjDRsYY222Ss.jpeg",
+    alt: "Materiales de preparación",
+    caption: "Bandeja de materiales"
+  },
+]
 
 const ventajas = [
   "Permite observar reacciones locales visibles",
@@ -160,33 +195,67 @@ export default function ViaIntradermicaPage() {
           </div>
         </section>
 
+        {/* Galería de imágenes */}
+        <section className="mb-12">
+          <SectionTitle className="mb-8">Galería de Procedimientos</SectionTitle>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galeriaImagenes.map((imagen, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src={imagen.src}
+                    alt={imagen.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm font-medium text-center drop-shadow-lg">
+                      {imagen.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Procedimiento */}
         <section className="mb-12">
           <SectionTitle className="mb-8">Procedimiento de administración por vía intradérmica</SectionTitle>
-          <div className="space-y-6">
-            {procedimiento.map((paso, index) => (
-              <div 
-                key={index} 
-                className="bg-card rounded-2xl p-6 shadow-sm border border-border/50"
-              >
-                <h3 className="text-lg font-semibold text-emerald-400 mb-4">
-                  {index + 1}. {paso.titulo}
-                </h3>
-                <ul className="space-y-2">
-                  {paso.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
-                      <span className="text-primary mt-0.5">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {paso.nota && (
-                  <p className={`mt-4 text-sm italic ${paso.notaColor === "green" ? "text-emerald-400" : "text-muted-foreground"}`}>
-                    {paso.notaColor === "green" && "✓ "}{paso.nota}
-                  </p>
-                )}
-              </div>
-            ))}
+          <div className="bg-card rounded-2xl shadow-sm border border-border/50 overflow-hidden">
+            <Accordion type="single" collapsible className="w-full">
+              {procedimiento.map((paso, index) => (
+                <AccordionItem key={index} value={`paso-${index}`} className="border-border/50 px-6">
+                  <AccordionTrigger className="text-emerald-400 font-semibold text-base hover:no-underline py-5">
+                    <span className="flex items-center gap-3">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-400/10 text-emerald-400 font-bold text-sm">
+                        {index + 1}
+                      </span>
+                      {paso.titulo}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-5">
+                    <ul className="space-y-2 ml-11">
+                      {paso.items.map((item, itemIndex) => (
+                        <li key={itemIndex} className="flex items-start gap-3 text-sm text-foreground/75 leading-relaxed">
+                          <span className="text-primary mt-0.5">•</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    {paso.nota && (
+                      <p className={`mt-4 ml-11 text-sm italic ${paso.notaColor === "green" ? "text-emerald-400" : "text-muted-foreground"}`}>
+                        {paso.notaColor === "green" && "* "}{paso.nota}
+                      </p>
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
       </main>

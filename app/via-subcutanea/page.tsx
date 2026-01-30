@@ -1,6 +1,41 @@
 import { Header } from "@/components/header"
 import { SectionTitle } from "@/components/section-title"
 import { VentajasDesventajas } from "@/components/ventajas-desventajas"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import Image from "next/image"
+
+const galeriaImagenes = [
+  {
+    src: "/images/subcutanea-1.jpg",
+    alt: "Inyección subcutánea en abdomen",
+    caption: "Inyección subcutánea abdominal"
+  },
+  {
+    src: "/images/subcutanea-2.jpg",
+    alt: "Inyección subcutánea en brazo",
+    caption: "Técnica en brazo"
+  },
+  {
+    src: "/images/subcutanea-3.jpg",
+    alt: "Materiales para inyección subcutánea",
+    caption: "Materiales de insulina"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.03%20PM%20%284%29-ymJmky1nl0nNvrICvX6TVoWtVbWrQ4.jpeg",
+    alt: "Inyección subcutánea",
+    caption: "Administración subcutánea"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.03%20PM%20%283%29-gGrwRWWrC3H9Am5PVwGBZQc7Le7hQ2.jpeg",
+    alt: "Técnica de inserción",
+    caption: "Técnica de inserción"
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-01-28%20at%207.43.04%20PM%20%281%29-JFkB8cEpel98NRphupzjDRsYY222Ss.jpeg",
+    alt: "Bandeja de materiales",
+    caption: "Preparación de materiales"
+  },
+]
 
 const ventajas = [
   "Técnica sencilla",
@@ -157,6 +192,34 @@ export default function ViaSubcutaneaPage() {
                 Estas áreas poseen suficiente tejido adiposo y facilitan la absorción.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Galería de imágenes */}
+        <section className="mb-12">
+          <SectionTitle className="mb-8">Galería de Procedimientos</SectionTitle>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galeriaImagenes.map((imagen, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl bg-card border border-border/50 shadow-sm hover:shadow-lg transition-all duration-300"
+              >
+                <div className="aspect-square relative">
+                  <Image
+                    src={imagen.src}
+                    alt={imagen.alt}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-white text-sm font-medium text-center drop-shadow-lg">
+                      {imagen.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
