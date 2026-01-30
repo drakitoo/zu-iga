@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { SectionTitle } from "@/components/section-title"
 import { VentajasDesventajas } from "@/components/ventajas-desventajas"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Image from "next/image"
 
 const galeriaImagenes = [
